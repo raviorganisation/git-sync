@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  Minimal CloudFormation template for testing CodeConnections Git sync.
+  Provisions a single private S3 bucket.
+
+Parameters:
+  BucketNameSuffix:
+    Type: String
+    Default: gitsync-demo
+    Description: Suffix used to build a unique bucket name.
+
+Resources:
+  DemoBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::AccountId}-${AWS::Region}-${BucketNameSuffix}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled
+
+Outputs:
+  BucketName:
+    Description: Name of the created S3 bucket.
+    Value: !Ref DemoBucket
