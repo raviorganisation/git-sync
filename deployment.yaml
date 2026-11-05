@@ -1,0 +1,5 @@
+template-file-path: template.yaml
+parameters:
+  BucketNameSuffix: gitsync-demo
+tags:
+  managed-by: cloudformation-git-sync
