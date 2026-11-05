@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: "2010-09-091"
 Description: >-
   Minimal CloudFormation template for testing CodeConnections Git sync.
   Provisions a single private S3 bucket.
